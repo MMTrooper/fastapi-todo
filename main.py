@@ -50,7 +50,7 @@ def home(request: Request, db: Session = Depends(get_db)):
 @app.post("/add", response_class=HTMLResponse)
 def post_add(request: Request, content: str = Form(...), db: Session = Depends(get_db)):
     session_key = request.cookies.get("session_key")
-    todo = create_todo(db, content=content, session_key=session_key)
+    todo = create_todo(db, content=content, session_key="session_key")
     context = {"request": request, "todo": todo}
     return templates.TemplateResponse("todo/item.html", context)
 
